@@ -22,6 +22,7 @@ var config = {
             'node_modules/bootstrap/dist/css/bootstrap.min.css',
             'node_modules/bootstrap/dist/css/bootstrap-theme.min.css'
         ],
+        images: './src/images/*',
         dist : './dist',
         mainJs : './src/main.js'
     }
@@ -51,6 +52,12 @@ gulp.task('html',function(){
     .pipe(connect.reload()); //live reload
 });
 
+//task 4: watch files or folders for changes
+gulp.task('watch', function(){
+    gulp.watch(config.paths.html, ['html']);
+    gulp.watch(config.paths.js, ['js', 'lint']);
+});
+
 //task 5: bundle and transform js files
 gulp.task('js', function(){
     browserify(config.paths.mainJs)
@@ -76,12 +83,17 @@ gulp.task('lint', function(){
     .pipe(lint.format());
 });
 
-//task 4: watch files or folders for changes
-gulp.task('watch', function(){
-    gulp.watch(config.paths.html, ['html']);
-    gulp.watch(config.paths.js, ['js', 'lint']);
+//task 8: copy images over to dist
+gulp.task('images', function(){
+    gulp.src(config.paths.images)
+    .pipe(gulp.dest(config.paths.dist + '/images'))
+    .pipe(connect.reload());
+    //publish favicon
+    gulp.src('./src/favicon.ico')
+    .pipe(gulp.dest(config.paths.dist));
 });
 
+
 //task Default: run all above created tasks
-gulp.task('default', ['html','js', 'css', 'lint', 'open', 'watch']);
+gulp.task('default', ['html','js', 'images','css', 'lint', 'open', 'watch']);
 })();
