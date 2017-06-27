@@ -2,7 +2,7 @@
     "use strict";
     var React = require('react');
 
-    var About = React.createClass({
+    var AboutPage = React.createClass({
         render: function () {
             return (
                 <div>
@@ -18,5 +18,5 @@
         }
     });
 
-    module.exports = About;
+    module.exports = AboutPage;
 })();

@@ -4,7 +4,7 @@
 
     var React = require('react');
 
-    var Home = React.createClass({
+    var HomePage = React.createClass({
         render: function () {
             return (
                 <div className="jumbotron">
@@ -15,5 +15,5 @@
         }
     });
 
-    module.exports = Home;
+    module.exports = HomePage;
 })();

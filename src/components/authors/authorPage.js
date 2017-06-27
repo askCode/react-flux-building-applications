@@ -14,7 +14,6 @@
             if (this.isMounted) {
                 this.setState({ authors: AuthorApi.getAllAuthors() });
             }
-
         },
         render: function () {
 
